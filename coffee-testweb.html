@@ -1,0 +1,1490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Brew & Bean | Coffee Portfolio</title>
+
+  <meta
+    name="description"
+    content="Explore different types of coffee, their origins, flavors, and brief histories."
+  />
+
+  <style>
+    /* =========================
+       GLOBAL STYLES
+    ========================= */
+
+    :root {
+      --coffee-dark: #2b170d;
+      --coffee: #5a321f;
+      --coffee-light: #8b5e3c;
+      --cream: #f8f1e7;
+      --cream-dark: #eadbc8;
+      --gold: #d49a4a;
+      --white: #ffffff;
+      --text: #33251f;
+      --muted: #75665e;
+      --shadow: 0 12px 35px rgba(43, 23, 13, 0.12);
+      --radius: 18px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      width: 100%;
+      display: block;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    /* =========================
+       NAVIGATION
+    ========================= */
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(43, 23, 13, 0.96);
+      backdrop-filter: blur(10px);
+    }
+
+    nav {
+      max-width: 1200px;
+      margin: auto;
+      padding: 18px 25px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      color: var(--white);
+      font-size: 1.6rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .logo span {
+      color: var(--gold);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #fff;
+      font-size: 0.95rem;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+
+    .menu-btn {
+      display: none;
+      color: white;
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      min-height: 100vh;
+      padding: 150px 25px 80px;
+      display: flex;
+      align-items: center;
+      background:
+        linear-gradient(
+          90deg,
+          rgba(43, 23, 13, 0.95),
+          rgba(43, 23, 13, 0.68),
+          rgba(43, 23, 13, 0.25)
+        ),
+        url("https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1800&q=85")
+        center/cover;
+      color: white;
+    }
+
+    .hero-content {
+      max-width: 1200px;
+      width: 100%;
+      margin: auto;
+    }
+
+    .hero-text {
+      max-width: 650px;
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 7vw, 6rem);
+      line-height: 1;
+      margin-bottom: 25px;
+    }
+
+    .hero h1 span {
+      color: var(--gold);
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      color: #f0e5d9;
+      margin-bottom: 35px;
+      max-width: 600px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 25px;
+      border-radius: 50px;
+      background: var(--gold);
+      color: var(--coffee-dark);
+      font-weight: bold;
+      transition: 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: white;
+      transform: translateY(-3px);
+    }
+
+    .btn-outline {
+      margin-left: 10px;
+      background: transparent;
+      color: white;
+      border: 1px solid white;
+    }
+
+    .btn-outline:hover {
+      color: var(--coffee-dark);
+    }
+
+    /* =========================
+       GENERAL SECTIONS
+    ========================= */
+
+    section {
+      padding: 100px 25px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 55px;
+    }
+
+    .section-heading span {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      color: var(--coffee-dark);
+      margin: 8px 0 12px;
+    }
+
+    .section-heading p {
+      max-width: 650px;
+      margin: auto;
+      color: var(--muted);
+    }
+
+    /* =========================
+       INTRO
+    ========================= */
+
+    .intro {
+      background: var(--white);
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .intro-image {
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .intro-image img {
+      height: 500px;
+      object-fit: cover;
+    }
+
+    .intro-text h3 {
+      font-size: 2rem;
+      color: var(--coffee-dark);
+      margin-bottom: 20px;
+    }
+
+    .intro-text p {
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    /* =========================
+       COFFEE FILTER
+    ========================= */
+
+    .coffee-section {
+      background: var(--cream);
+    }
+
+    .filters {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 35px;
+    }
+
+    .filter-btn {
+      padding: 10px 20px;
+      border: 1px solid var(--cream-dark);
+      border-radius: 30px;
+      background: white;
+      color: var(--coffee);
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--coffee);
+      color: white;
+      border-color: var(--coffee);
+    }
+
+    /* =========================
+       COFFEE CARDS
+    ========================= */
+
+    .coffee-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .coffee-card {
+      background: white;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(43, 23, 13, 0.08);
+      transition: 0.35s;
+    }
+
+    .coffee-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow);
+    }
+
+    .coffee-card-image {
+      height: 220px;
+      overflow: hidden;
+    }
+
+    .coffee-card-image img {
+      height: 100%;
+      object-fit: cover;
+      transition: 0.5s;
+    }
+
+    .coffee-card:hover img {
+      transform: scale(1.06);
+    }
+
+    .coffee-info {
+      padding: 25px;
+    }
+
+    .coffee-info h3 {
+      font-size: 1.5rem;
+      color: var(--coffee-dark);
+      margin-bottom: 8px;
+    }
+
+    .origin {
+      color: var(--gold);
+      font-size: 0.85rem;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    .coffee-info p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 15px;
+    }
+
+    .coffee-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .tag {
+      padding: 5px 10px;
+      background: var(--cream);
+      color: var(--coffee);
+      border-radius: 20px;
+      font-size: 0.75rem;
+    }
+
+    /* =========================
+       HISTORY TIMELINE
+    ========================= */
+
+    .history {
+      background: var(--coffee-dark);
+      color: white;
+    }
+
+    .history .section-heading h2 {
+      color: white;
+    }
+
+    .history .section-heading p {
+      color: #d9c9bb;
+    }
+
+    .timeline {
+      max-width: 850px;
+      margin: auto;
+      position: relative;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 100%;
+      background: var(--gold);
+    }
+
+    .timeline-item {
+      width: 50%;
+      padding: 20px 40px;
+      position: relative;
+    }
+
+    .timeline-item:nth-child(odd) {
+      text-align: right;
+    }
+
+    .timeline-item:nth-child(even) {
+      margin-left: 50%;
+    }
+
+    .timeline-item::after {
+      content: "";
+      position: absolute;
+      top: 30px;
+      width: 14px;
+      height: 14px;
+      background: var(--gold);
+      border: 3px solid var(--coffee-dark);
+      border-radius: 50%;
+    }
+
+    .timeline-item:nth-child(odd)::after {
+      right: -7px;
+    }
+
+    .timeline-item:nth-child(even)::after {
+      left: -7px;
+    }
+
+    .timeline-year {
+      color: var(--gold);
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    .timeline-item h3 {
+      margin: 5px 0;
+      font-size: 1.3rem;
+    }
+
+    .timeline-item p {
+      color: #d8c9bd;
+      font-size: 0.9rem;
+    }
+
+    /* =========================
+       FACTS
+    ========================= */
+
+    .facts {
+      background: var(--white);
+    }
+
+    .facts-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .fact {
+      text-align: center;
+      padding: 30px 20px;
+      border-radius: var(--radius);
+      background: var(--cream);
+    }
+
+    .fact .number {
+      color: var(--gold);
+      font-size: 2.5rem;
+      font-weight: bold;
+    }
+
+    .fact h3 {
+      color: var(--coffee-dark);
+      margin: 8px 0;
+    }
+
+    .fact p {
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      background: #1c0e08;
+      color: white;
+      padding: 50px 25px 25px;
+    }
+
+    .footer-grid {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+    }
+
+    footer h3 {
+      margin-bottom: 15px;
+      color: var(--gold);
+    }
+
+    footer p {
+      color: #bcaea5;
+      max-width: 450px;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 8px;
+    }
+
+    .footer-links a {
+      color: #cfc1b8;
+      transition: 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: var(--gold);
+    }
+
+    .copyright {
+      max-width: 1200px;
+      margin: 40px auto 0;
+      padding-top: 20px;
+      border-top: 1px solid #3b2920;
+      text-align: center;
+      color: #8d7d73;
+      font-size: 0.85rem;
+    }
+
+    /* =========================
+       SCROLL ANIMATION
+    ========================= */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =========================
+       RESPONSIVE DESIGN
+    ========================= */
+
+    @media (max-width: 900px) {
+      .coffee-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .facts-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .intro-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .menu-btn {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: var(--coffee-dark);
+        flex-direction: column;
+        padding: 25px;
+        gap: 20px;
+        display: none;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .hero {
+        padding-top: 130px;
+      }
+
+      .btn-outline {
+        margin-left: 0;
+        margin-top: 10px;
+      }
+
+      .coffee-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .facts-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline::before {
+        left: 10px;
+      }
+
+      .timeline-item,
+      .timeline-item:nth-child(even) {
+        width: 100%;
+        margin-left: 0;
+        text-align: left;
+        padding-left: 40px;
+      }
+
+      .timeline-item::after,
+      .timeline-item:nth-child(odd)::after,
+      .timeline-item:nth-child(even)::after {
+        left: 3px;
+        right: auto;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       NAVIGATION
+  ========================== -->
+
+  <header>
+    <nav>
+      <a href="#home" class="logo">Brew<span>&</span>Bean</a>
+
+      <div class="menu-btn" id="menuBtn">☰</div>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About Coffee</a></li>
+        <li><a href="#coffees">Coffee Types</a></li>
+        <li><a href="#history">History</a></li>
+        <li><a href="#facts">Facts</a></li>
+      </ul>
+    </nav>
+  </header>
+
+
+  <!-- =========================
+       HERO
+  ========================== -->
+
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <div class="hero-text reveal">
+
+        <p style="color:#d49a4a; font-weight:bold; letter-spacing:3px;">
+          THE WORLD OF COFFEE
+        </p>
+
+        <h1>
+          Every Cup Has a <span>Story.</span>
+        </h1>
+
+        <p>
+          Explore the world's most loved coffee drinks, discover where
+          they came from, and learn the stories behind every delicious cup.
+        </p>
+
+        <a href="#coffees" class="btn">
+          Explore Coffee
+        </a>
+
+        <a href="#history" class="btn btn-outline">
+          Coffee History
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =========================
+       ABOUT
+  ========================== -->
+
+  <section class="intro" id="about">
+
+    <div class="container">
+
+      <div class="section-heading reveal">
+        <span>About Coffee</span>
+        <h2>A Drink With Centuries of History</h2>
+        <p>
+          Coffee has traveled from ancient forests to modern cafés,
+          becoming one of the world's favorite beverages.
+        </p>
+      </div>
+
+      <div class="intro-grid">
+
+        <div class="intro-image reveal">
+          <img
+            src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=1000&q=80"
+            alt="Coffee beans"
+          />
+        </div>
+
+        <div class="intro-text reveal">
+
+          <h3>From Bean to Cup</h3>
+
+          <p>
+            Coffee comes from the seeds, commonly called beans, of
+            berries produced by coffee plants. The two most commercially
+            important species are Arabica and Robusta.
+          </p>
+
+          <p>
+            Coffee's history is traditionally traced to Ethiopia, where
+            coffee plants are believed to have originated. From there,
+            coffee cultivation and trade spread to Yemen and throughout
+            the Middle East.
+          </p>
+
+          <p>
+            By the 17th century, coffee had reached Europe and coffeehouses
+            began appearing in major cities. Today, coffee is enjoyed in
+            countless forms, from a simple espresso to elaborate specialty
+            drinks.
+          </p>
+
+          <a href="#coffees" class="btn">
+            Discover More
+          </a>
+
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       COFFEE TYPES
+  ========================== -->
+
+  <section class="coffee-section" id="coffees">
+
+    <div class="container">
+
+      <div class="section-heading reveal">
+        <span>Coffee Collection</span>
+        <h2>Explore Different Coffee Types</h2>
+        <p>
+          Each preparation method creates a different flavor,
+          texture, and experience.
+        </p>
+      </div>
+
+
+      <!-- FILTER BUTTONS -->
+
+      <div class="filters">
+
+        <button class="filter-btn active" data-filter="all">
+          All
+        </button>
+
+        <button class="filter-btn" data-filter="espresso">
+          Espresso
+        </button>
+
+        <button class="filter-btn" data-filter="milk">
+          Milk Based
+        </button>
+
+        <button class="filter-btn" data-filter="brewed">
+          Brewed
+        </button>
+
+        <button class="filter-btn" data-filter="cold">
+          Cold
+        </button>
+
+      </div>
+
+
+      <div class="coffee-grid">
+
+
+        <!-- ESPRESSO -->
+
+        <article class="coffee-card reveal" data-category="espresso">
+
+          <div class="coffee-card-image">
+            <img
+              src="https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?auto=format&fit=crop&w=900&q=80"
+              alt="Espresso"
+            />
+          </div>
+
+          <div class="coffee-info">
+
+            <h3>Espresso</h3>
+
+            <div class="origin">
+              🇮🇹 Italy
+            </div>
+
+            <p>
+              A concentrated coffee brewed by forcing hot water through
+              finely ground coffee under pressure.
+            </p>
+
+            <div class="coffee-tags">
+              <span class="tag">Strong</span>
+              <span class="tag">Rich</span>
+              <span class="tag">Intense</span>
+            </div>
+
+          </div>
+        </article>
+
+
+        <!-- CAPPUCCINO -->
+
+        <article class="coffee-card reveal" data-category="milk">
+
+          <div class="coffee-card-image">
+            <img
+              src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=900&q=80"
+              alt="Cappuccino"
+            />
+          </div>
+
+          <div class="coffee-info">
+
+            <h3>Cappuccino</h3>
+
+            <div class="origin">
+              🇮🇹 Italy
+            </div>
+
+            <p>
+              Traditionally made with espresso, steamed milk, and a layer
+              of milk foam. Its modern form developed in Italy.
+            </p>
+
+            <div class="coffee-tags">
+              <span class="tag">Creamy</span>
+              <span class="tag">Foamy</span>
+              <span class="tag">Balanced</span>
+            </div>
+
+          </div>
+        </article>
+
+
+        <!-- LATTE -->
+
+        <article class="coffee-card reveal" data-category="milk">
+
+          <div class="coffee-card-image">
+            <img
+              src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=900&q=80"
+              alt="Caffe Latte"
+            />
+          </div>
+
+          <div class="coffee-info">
+
+            <h3>Caffè Latte</h3>
+
+            <div class="origin">
+              🇮🇹 Italy
+            </div>
+
+            <p>
+              Espresso combined with plenty of steamed milk and a small
+              amount of foam, creating a smooth and gentle drink.
+            </p>
+
+            <div class="coffee-tags">
+              <span class="tag">Smooth</span>
+              <span class="tag">Milky</span>
+              <span class="tag">Mild</span>
+            </div>
+
+          </div>
+        </article>
+
+
+        <!-- AMERICANO -->
+
+        <article class="coffee-card reveal" data-category="espresso">
+
+          <div class="coffee-card-image">
+            <img
+              src="https://images.unsplash.com/photo-1551030173-122aabc4489c?auto=format&fit=crop&w=900&q=80"
+              alt="Americano"
+            />
+          </div>
+
+          <div class="coffee-info">
+
+            <h3>Americano</h3>
+
+            <div class="origin">
+              🇺🇸 United States / Italy
+            </div>
+
+            <p>
+              Espresso diluted with hot water. It provides a longer drink
+              while retaining the characteristic flavor of espresso.
+            </p>
+
+            <div class="coffee-tags">
+              <span class="tag">Bold</span>
+              <span class="tag">Light</span>
+              <span class="tag">Simple</span>
+            </div>
+
+          </div>
+        </article>
+
+
+        <!-- MOCHA -->
+
+        <article class="coffee-card reveal" data-category="milk">
+
+          <div class="coffee-card-image">
+            <img
+              src="https://images.unsplash.com/photo-1578374173704-7f9f8c6a2f2a?auto=format&fit=crop&w=900&q=80"
+              alt="Mocha coffee"
+            />
+          </div>
+
+          <div class="coffee-info">
+
+            <h3>Mocha</h3>
+
+            <div class="origin">
+              🇾🇪 Yemen / Modern Café Culture
+            </div>
+
+            <p>
+              A chocolate-flavored coffee drink generally made with
+              espresso, steamed milk, and chocolate.
+            </p>
+
+            <div class="coffee-tags">
+              <span class="tag">Chocolate</span>
+              <span class="tag">Sweet</span>
+              <span class="tag">Creamy</span>
+            </div>
+
+          </div>
+        </article>
+
+
+        <!-- COLD BREW -->
+
+        <article class="coffee-card reveal" data-category="cold">
+
+          <div class="coffee-card-image">
+            <img
+              src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=900&q=80"
+              alt="Cold brew coffee"
+            />
+          </div>
+
+          <div class="coffee-info">
+
+            <h3>Cold Brew</h3>
+
+            <div class="origin">
+              🌎 Modern Coffee Culture
+            </div>
+
+            <p>
+              Coffee grounds steeped in cold or room-temperature water for
+              many hours, producing a smooth and less acidic drink.
+            </p>
+
+            <div class="coffee-tags">
+              <span class="tag">Cold</span>
+              <span class="tag">Smooth</span>
+              <span class="tag">Refreshing</span>
+            </div>
+
+          </div>
+        </article>
+
+
+        <!-- FRENCH PRESS -->
+
+        <article class="coffee-card reveal" data-category="brewed">
+
+          <div class="coffee-card-image">
+            <img
+              src="https://images.unsplash.com/photo-1498804103079-a6351b050096?auto=format&fit=crop&w=900&q=80"
+              alt="French press coffee"
+            />
+          </div>
+
+          <div class="coffee-info">
+
+            <h3>French Press</h3>
+
+            <div class="origin">
+              🇫🇷 France
+            </div>
+
+            <p>
+              Coarsely ground coffee is steeped in hot water before a
+              metal mesh plunger separates the grounds from the drink.
+            </p>
+
+            <div class="coffee-tags">
+              <span class="tag">Full-bodied</span>
+              <span class="tag">Rich</span>
+              <span class="tag">Aromatic</span>
+            </div>
+
+          </div>
+        </article>
+
+
+        <!-- POUR OVER -->
+
+        <article class="coffee-card reveal" data-category="brewed">
+
+          <div class="coffee-card-image">
+            <img
+              src="https://images.unsplash.com/photo-1497636577773-f1231844b336?auto=format&fit=crop&w=900&q=80"
+              alt="Pour over coffee"
+            />
+          </div>
+
+          <div class="coffee-info">
+
+            <h3>Pour Over</h3>
+
+            <div class="origin">
+              🇩🇪 Germany / Global
+            </div>
+
+            <p>
+              Hot water is slowly poured over coffee grounds in a filter,
+              allowing precise control over extraction and flavor.
+            </p>
+
+            <div class="coffee-tags">
+              <span class="tag">Clean</span>
+              <span class="tag">Bright</span>
+              <span class="tag">Aromatic</span>
+            </div>
+
+          </div>
+        </article>
+
+
+        <!-- MACCHIATO -->
+
+        <article class="coffee-card reveal" data-category="espresso">
+
+          <div class="coffee-card-image">
+            <img
+              src="https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=900&q=80"
+              alt="Macchiato coffee"
+            />
+          </div>
+
+          <div class="coffee-info">
+
+            <h3>Macchiato</h3>
+
+            <div class="origin">
+              🇮🇹 Italy
+            </div>
+
+            <p>
+              Espresso marked with a small amount of steamed or foamed milk.
+              The name means "stained" or "marked" in Italian.
+            </p>
+
+            <div class="coffee-tags">
+              <span class="tag">Strong</span>
+              <span class="tag">Foamy</span>
+              <span class="tag">Small</span>
+            </div>
+
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       COFFEE HISTORY
+  ========================== -->
+
+  <section class="history" id="history">
+
+    <div class="container">
+
+      <div class="section-heading reveal">
+        <span>Timeline</span>
+        <h2>The History of Coffee</h2>
+        <p>
+          A quick journey through the development and spread of coffee.
+        </p>
+      </div>
+
+
+      <div class="timeline">
+
+        <div class="timeline-item reveal">
+          <div class="timeline-year">9th Century</div>
+          <h3>Origins in Ethiopia</h3>
+          <p>
+            Coffee plants are believed to have originated in the
+            highlands of Ethiopia. Stories about coffee's discovery
+            include the famous legend of a goat herder named Kaldi.
+          </p>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-year">15th Century</div>
+          <h3>Yemen and Coffee Cultivation</h3>
+          <p>
+            Coffee cultivation and preparation became established in
+            Yemen, where coffee became an important part of social and
+            religious life.
+          </p>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-year">16th Century</div>
+          <h3>Coffee Spreads Across the Middle East</h3>
+          <p>
+            Coffeehouses became popular gathering places in cities across
+            the Middle East, supporting conversation, commerce, and culture.
+          </p>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-year">17th Century</div>
+          <h3>Arrival in Europe</h3>
+          <p>
+            Coffee reached Europe and quickly became popular. Coffeehouses
+            appeared in cities such as London, Paris, and Vienna.
+          </p>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-year">18th Century</div>
+          <h3>Global Cultivation</h3>
+          <p>
+            European colonial powers established coffee plantations in
+            tropical regions around the world, expanding global production.
+          </p>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-year">20th–21st Century</div>
+          <h3>The Specialty Coffee Era</h3>
+          <p>
+            Espresso culture, specialty coffee, home brewing, latte art,
+            single-origin beans, and modern brewing techniques have
+            transformed contemporary coffee culture.
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       COFFEE FACTS
+  ========================== -->
+
+  <section class="facts" id="facts">
+
+    <div class="container">
+
+      <div class="section-heading reveal">
+        <span>Coffee Facts</span>
+        <h2>Did You Know?</h2>
+        <p>
+          A few interesting facts about the world's favorite morning drink.
+        </p>
+      </div>
+
+
+      <div class="facts-grid">
+
+        <div class="fact reveal">
+          <div class="number">2</div>
+          <h3>Main Species</h3>
+          <p>
+            Arabica and Robusta are the two major commercially cultivated
+            coffee species.
+          </p>
+        </div>
+
+        <div class="fact reveal">
+          <div class="number">70+</div>
+          <h3>Coffee-Producing Countries</h3>
+          <p>
+            Coffee is cultivated in tropical regions around the world.
+          </p>
+        </div>
+
+        <div class="fact reveal">
+          <div class="number">3rd</div>
+          <h3>Popular Beverage</h3>
+          <p>
+            Coffee is among the world's most widely consumed beverages.
+          </p>
+        </div>
+
+        <div class="fact reveal">
+          <div class="number">☕</div>
+          <h3>Global Culture</h3>
+          <p>
+            Coffeehouses have historically served as important social
+            and cultural meeting places.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer>
+
+    <div class="footer-grid">
+
+      <div>
+        <h3>Brew & Bean</h3>
+
+        <p>
+          A visual portfolio exploring coffee varieties, their origins,
+          preparation methods, flavors, and fascinating history.
+        </p>
+      </div>
+
+      <div>
+        <h3>Explore</h3>
+
+        <ul class="footer-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About Coffee</a></li>
+          <li><a href="#coffees">Coffee Types</a></li>
+          <li><a href="#history">History</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Popular</h3>
+
+        <ul class="footer-links">
+          <li><a href="#coffees">Espresso</a></li>
+          <li><a href="#coffees">Cappuccino</a></li>
+          <li><a href="#coffees">Latte</a></li>
+          <li><a href="#coffees">Cold Brew</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="copyright">
+      © 2026 Brew & Bean. Designed for coffee lovers.
+    </div>
+
+  </footer>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
+
+  <script>
+
+    /* =========================
+       MOBILE MENU
+    ========================== */
+
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+
+    menuBtn.addEventListener("click", () => {
+      navLinks.classList.toggle("show");
+    });
+
+
+    /* Close mobile menu after clicking */
+
+    document.querySelectorAll(".nav-links a").forEach(link => {
+
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("show");
+      });
+
+    });
+
+
+    /* =========================
+       COFFEE FILTER
+    ========================== */
+
+    const filterButtons =
+      document.querySelectorAll(".filter-btn");
+
+    const coffeeCards =
+      document.querySelectorAll(".coffee-card");
+
+
+    filterButtons.forEach(button => {
+
+      button.addEventListener("click", () => {
+
+        /* Remove active state */
+
+        filterButtons.forEach(btn => {
+          btn.classList.remove("active");
+        });
+
+        /* Add active state */
+
+        button.classList.add("active");
+
+        const filter =
+          button.getAttribute("data-filter");
+
+
+        coffeeCards.forEach(card => {
+
+          const category =
+            card.getAttribute("data-category");
+
+          if (filter === "all" || category === filter) {
+
+            card.style.display = "block";
+
+            setTimeout(() => {
+              card.style.opacity = "1";
+              card.style.transform = "translateY(0)";
+            }, 50);
+
+          } else {
+
+            card.style.opacity = "0";
+            card.style.transform = "translateY(15px)";
+
+            setTimeout(() => {
+              card.style.display = "none";
+            }, 250);
+
+          }
+
+        });
+
+      });
+
+    });
+
+
+    /* =========================
+       SCROLL REVEAL
+    ========================== */
+
+    const revealElements =
+      document.querySelectorAll(".reveal");
+
+
+    const revealObserver =
+      new IntersectionObserver(
+        (entries, observer) => {
+
+          entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+              entry.target.classList.add("visible");
+
+              observer.unobserve(entry.target);
+
+            }
+
+          });
+
+        },
+        {
+          threshold: 0.12
+        }
+      );
+
+
+    revealElements.forEach(element => {
+      revealObserver.observe(element);
+    });
+
+
+    /* =========================
+       ACTIVE NAVIGATION
+    ========================== */
+
+    const sections =
+      document.querySelectorAll("section");
+
+    const navItems =
+      document.querySelectorAll(".nav-links a");
+
+
+    window.addEventListener("scroll", () => {
+
+      let current = "";
+
+      sections.forEach(section => {
+
+        const sectionTop =
+          section.offsetTop - 150;
+
+        if (window.scrollY >= sectionTop) {
+          current = section.getAttribute("id");
+        }
+
+      });
+
+
+      navItems.forEach(item => {
+
+        item.style.color = "";
+
+        if (
+          item.getAttribute("href") === "#" + current
+        ) {
+          item.style.color = "#d49a4a";
+        }
+
+      });
+
+    });
+
+  </script>
+
+</body>
+</html>
